@@ -1,9 +1,10 @@
-# DocuGPT: Framework Documentation RAG Assistant 🤖
+# FrameworkGPT: Documentation RAG Assistant 🤖
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.24+-red.svg)](https://streamlit.io)
 [![OpenAI](https://img.shields.io/badge/OpenAI-1.0+-green.svg)](https://openai.com)
+[![Supabase](https://img.shields.io/badge/Supabase-Vector%20Store-blueviolet)](https://supabase.com)
 
 ## The Problem We Solve 🎯
 
@@ -14,10 +15,18 @@ Large Language Models (LLMs) are incredibly powerful, but they face a significan
 - No knowledge of new features or APIs
 - No access to framework-specific code examples
 
-DocuGPT solves this problem by implementing a sophisticated RAG (Retrieval Augmented Generation) system that:
+FrameworkGPT solves this problem by implementing a sophisticated RAG (Retrieval Augmented Generation) system that:
 1. Automatically crawls and indexes any framework's documentation
 2. Enables natural language queries about the documentation
 3. Provides accurate, up-to-date answers with source references
+
+## Supported Frameworks 🔧
+
+Currently supported frameworks:
+- 🕸️ **Crawl4AI**: Asynchronous web crawling framework
+- 🔍 **Pydantic AI**: Data validation framework for AI
+- 🌐 **Agno**: Web development framework
+- 🤖 **MCP (Model Context Protocol)**: Protocol for model context management
 
 ## System Architecture 🏗️
 
@@ -62,28 +71,6 @@ graph TD
 - **Real-time Updates**: Async response generation
 - **Source Attribution**: Automatic reference linking
 
-## How It Works 🔄
-
-### 1. Documentation Indexing Pipeline
-```mermaid
-graph LR
-    A[Sitemap Parsing] --> B[HTML Crawling]
-    B --> C[Content Extraction]
-    C --> D[Text Chunking]
-    D --> E[Embedding Generation]
-    E --> F[Vector Storage]
-```
-
-### 2. Query Processing Pipeline
-```mermaid
-graph LR
-    A[User Query] --> B[Query Embedding]
-    B --> C[Vector Search]
-    C --> D[Context Assembly]
-    D --> E[GPT-4 Processing]
-    E --> F[Response Generation]
-```
-
 ## Setup and Installation 🚀
 
 ### Prerequisites
@@ -95,8 +82,8 @@ graph LR
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/system32miro/docugpt.git
-cd docugpt
+git clone https://github.com/system32miro/FrameworkGPT.git
+cd FrameworkGPT
 ```
 
 2. Install dependencies:
@@ -185,9 +172,13 @@ FRAMEWORKS = {
 }
 ```
 
-3. Run the crawler:
+3. Run the crawler and indexer:
 ```bash
+# Crawl the documentation
 python crawl_docs.py --framework your_framework
+
+# Index the documents
+python index_documents.py --framework your_framework
 ```
 
 ## Running the Project 💻
@@ -202,7 +193,7 @@ streamlit run chat_interface.py
 ## Features ✨
 
 - 🔍 Semantic search in up-to-date documentation
-- 💬 Intuitive chat interface
+- 💬 Intuitive chat interface with typing animations
 - 🎨 Dynamic framework-specific themes
 - 📚 Multi-framework support
 - 🔗 Source references and attribution
@@ -214,22 +205,16 @@ streamlit run chat_interface.py
 ## Project Structure 📁
 
 ```
-DocuGPT
+FrameworkGPT
 ├── chat_interface.py      # Streamlit interface
 ├── rag_engine.py         # RAG implementation
 ├── crawl_docs.py         # Documentation crawler
+├── index_documents.py    # Document indexing
 ├── requirements.txt      # Dependencies
 ├── .env                  # Configuration
-└── docs/                 # Documentation
+├── .gitignore           # Git ignore rules
+└── output/              # Crawled documentation
 ```
-
-## Contributing 🤝
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
 
 ## Performance Metrics 📊
 
@@ -238,6 +223,15 @@ DocuGPT
 - Context window: Up to 8k tokens
 - Supported frameworks: Unlimited
 - Documentation update frequency: Configurable
+- Vector search performance: ~100ms
+
+## Contributing 🤝
+
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## License 📄
 
@@ -248,4 +242,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - OpenAI for GPT-4 and embeddings
 - Supabase for vector storage
 - Streamlit for the UI framework
-- All contributors and users 
+- All contributors and users
