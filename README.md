@@ -6,6 +6,10 @@
 [![OpenAI](https://img.shields.io/badge/OpenAI-1.0+-green.svg)](https://openai.com)
 [![Supabase](https://img.shields.io/badge/Supabase-Vector%20Store-blueviolet)](https://supabase.com)
 
+FrameworkGPT leverages RAG to deliver precise and up-to-date answers on frameworks and technical docs.
+
+![FrameworkGPT Interface](./assets/print-interface.png)
+
 ## The Problem We Solve 🎯
 
 Large Language Models (LLMs) are incredibly powerful, but they face a significant limitation: their knowledge is confined to their training data. This means:
