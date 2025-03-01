@@ -43,6 +43,11 @@ FRAMEWORKS = {
         'agno',
         'https://docs.agno.com/sitemap.xml',
         'https://docs.agno.com'
+    ),
+    'mcp': DocsFramework(
+        'mcp',
+        'https://modelcontextprotocol.io/sitemap.xml',
+        'https://modelcontextprotocol.io'
     )
 }
 

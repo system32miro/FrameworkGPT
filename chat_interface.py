@@ -38,6 +38,13 @@ FRAMEWORKS = {
         'docs_url': 'https://docs.agno.com',
         'color': '#42f5ad',
         'emoji': '🌐'
+    },
+    'mcp': {
+        'name': 'Model Context Protocol',
+        'description': 'Protocol for model context management',
+        'docs_url': 'https://modelcontextprotocol.io',
+        'color': '#f54242',
+        'emoji': '🤖'
     }
 }
 

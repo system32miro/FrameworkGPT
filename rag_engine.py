@@ -98,13 +98,18 @@ class RAGEngine:
             raise Exception(f"Error in document retrieval: {e}")
 
     def _prepare_context(self, chunks: List[Dict[str, Any]]) -> str:
-        """Prepare the context from the retrieved chunks"""
-        return "\n\n---\n\n".join([
-            f"Content: {chunk['content']}\n"
-            f"URL: {chunk['url']}\n"
-            f"Title: {chunk.get('title', 'No title')}"
-            for chunk in chunks
-        ])
+        """Prepare the context from the retrieved chunks with improved formatting"""
+        formatted_chunks = []
+        for chunk in chunks:
+            formatted_chunk = (
+                f"Section: {chunk.get('title', 'No title')}\n"
+                f"URL: {chunk['url']}\n"
+                f"Content:\n{chunk['content']}\n"
+                f"{'=' * 50}"
+            )
+            formatted_chunks.append(formatted_chunk)
+        
+        return "\n\n".join(formatted_chunks)
 
     def _get_system_prompt(self, framework: str) -> str:
         """Returns the system prompt specific to each framework"""
@@ -116,7 +121,26 @@ class RAGEngine:
             Use the provided context to answer questions about models, validations, and integrations.""",
 
             'agno': """You are an expert on Agno, specialized in web development.
-            Use the provided context to answer questions about configuration, development, and best practices."""
+            Use the provided context to answer questions about configuration, development, and best practices.""",
+            
+            'mcp': """You are an expert on Model Context Protocol (MCP), specialized in model context management and LLM interactions.
+            
+            Key areas of expertise:
+            1. Protocol specifications and architecture
+            2. Client-server implementations
+            3. Tool definitions and integrations
+            4. Resource management and context handling
+            5. Transport layer configurations
+            6. Debugging and inspection tools
+            
+            When answering:
+            - Focus on practical implementation details
+            - Provide code examples when relevant
+            - Reference specific MCP concepts and components
+            - Explain how features integrate with LLM systems
+            - Highlight best practices and common pitfalls
+            
+            Use the provided context to give accurate, implementation-focused answers."""
         }
         return system_prompts.get(framework, "You are a specialized assistant for technical documentation.")
 
@@ -125,7 +149,7 @@ class RAGEngine:
                          chunks: List[Dict[str, Any]], 
                          framework: str) -> str:
         """
-        Generate response based on retrieved documents
+        Generate response based on retrieved documents with improved context handling
         
         Args:
             query: User question
@@ -139,13 +163,28 @@ class RAGEngine:
             context = self._prepare_context(chunks)
             system_prompt = self._get_system_prompt(framework)
             
+            # Improved prompt structure for better context utilization
+            user_prompt = f"""Based on the following documentation sections, answer the question below.
+            If the answer cannot be fully derived from the provided context, say so.
+            
+            Documentation Sections:
+            {context}
+            
+            Question: {query}
+            
+            Please provide a clear, structured answer with:
+            1. Direct response to the question
+            2. Relevant code examples (if applicable)
+            3. Links to related documentation (if available)"""
+            
             logger.info("Generating response with LLM")
             response = self.openai_client.chat.completions.create(
                 model=self.llm_model,
                 messages=[
                     {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": f"Context:\n\n{context}\n\nQuestion: {query}"}
-                ]
+                    {"role": "user", "content": user_prompt}
+                ],
+                temperature=0.7  # Slightly creative but still focused
             )
             
             return response.choices[0].message.content
