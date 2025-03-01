@@ -95,7 +95,7 @@ graph LR
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/docugpt.git
+git clone https://github.com/system32miro/docugpt.git
 cd docugpt
 ```
 
@@ -242,12 +242,6 @@ DocuGPT
 ## License 📄
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Contact 📧
-
-Your Name - [@your_twitter](https://twitter.com/your_twitter)
-
-Project Link: [https://github.com/your-username/docugpt](https://github.com/your-username/docugpt)
 
 ## Acknowledgments 🙏
 
