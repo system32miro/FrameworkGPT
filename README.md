@@ -31,6 +31,7 @@ Currently supported frameworks:
 - 🔍 **Pydantic AI**: Data validation framework for AI
 - 🌐 **Agno**: Web development framework
 - 🤖 **MCP (Model Context Protocol)**: Protocol for model context management
+- 🧩 **Composio**: Composable AI development framework
 
 ## System Architecture 🏗️
 

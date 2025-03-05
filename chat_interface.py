@@ -45,6 +45,13 @@ FRAMEWORKS = {
         'docs_url': 'https://modelcontextprotocol.io',
         'color': '#f54242',
         'emoji': '🤖'
+    },
+    'composio': {
+        'name': 'Composio',
+        'description': 'Composable AI development framework',
+        'docs_url': 'https://docs.composio.dev',
+        'color': '#42b0f5',
+        'emoji': '🧩'
     }
 }
 

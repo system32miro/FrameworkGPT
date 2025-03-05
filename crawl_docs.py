@@ -48,6 +48,11 @@ FRAMEWORKS = {
         'mcp',
         'https://modelcontextprotocol.io/sitemap.xml',
         'https://modelcontextprotocol.io'
+    ),
+    'composio': DocsFramework(
+        'composio',
+        'https://docs.composio.dev/sitemap.xml',
+        'https://docs.composio.dev'
     )
 }
 
